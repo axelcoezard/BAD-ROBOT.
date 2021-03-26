@@ -10,7 +10,11 @@ const CMDRegister = new Commands();
 Dotenv.config();
 
 Client.on("ready", () => {
-    console.log("working")
+    console.log("[BOT] Waiting for instructions")
+    Client.user.setActivity(
+        "Je fais de mon mieux...", 
+        {type: "CUSTOM_STATUS"}
+    ); 
 })
 
 Client.on("message", (message) => {
