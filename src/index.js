@@ -5,6 +5,7 @@ import Config from "./config"
 import Commands from "./commands"
 
 const Client = new Discord.Client();
+const CMDRegister = new Commands();
 
 Dotenv.config();
 
@@ -22,7 +23,7 @@ Client.on("message", (message) => {
         // Récupère le contenu de la commande.
         const cmd_args = args;
         // Execute la commande si elle existe
-        if (cmd in Commands) Commands[cmd](cmd_args);
+        if (cmd in CMDRegister) CMDRegister[cmd](message, cmd_args);
     }
 })
 

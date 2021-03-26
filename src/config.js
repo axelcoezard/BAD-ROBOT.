@@ -2,7 +2,13 @@ const Config = {
 
     name: "BAD ROBOT.",
 
-    prefix: "br!"
+    prefix: "!",
+
+    subReddits: [
+        "dankmeme",
+        "meme",
+        "me_irl"
+    ]
 
 }
 
