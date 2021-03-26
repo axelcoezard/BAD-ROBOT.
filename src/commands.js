@@ -119,11 +119,10 @@ class Commands {
                     textChannel.send(embed)
                 }
             })
-                
-            } else {
-                textChannel.send(`:x: **La file d'attente est actuellement vide**...`);
-            }
+        } else {
+            textChannel.send(`:x: **La file d'attente est actuellement vide**...`);
         }
+    }
         
     /**
      * 
