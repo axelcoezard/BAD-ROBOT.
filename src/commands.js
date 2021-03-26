@@ -25,7 +25,7 @@ class Commands {
         // Récupère une image aléatoire sur le subReddit.
         const image = await randomPuppy(random);
         const embed = new MessageEmbed()
-            .setColor("BLUE")
+            .setColor("GREEN")
             .setImage(image)
             .setTitle(`via /r/${random}`)
             .setTimestamp()
