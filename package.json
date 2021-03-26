@@ -1,0 +1,28 @@
+{
+  "name": "bad-robot.",
+  "version": "1.0.0",
+  "description": "Le bot officiel de mon serveur discord BAD DEVS.",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelcoezard/BAD-ROBOT..git"
+  },
+  "author": "Axel Coézard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/axelcoezard/BAD-ROBOT./issues"
+  },
+  "homepage": "https://github.com/axelcoezard/BAD-ROBOT.#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
+  }
+}
