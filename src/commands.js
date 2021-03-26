@@ -26,9 +26,7 @@ class Commands {
         const image = await randomPuppy(random);
         const embed = new MessageEmbed()
             .setColor("GREEN")
-            .setImage(image)
-            .setTitle(`via /r/${random}`)
-            .setTimestamp()
+            .setImage(image)    
             .setURL(`https://reddit.com/r/${random}`);
         // Envoie le meme sur Discord.
         message.channel.send(embed);
