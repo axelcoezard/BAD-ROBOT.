@@ -113,12 +113,12 @@ class Commands {
                 embed.addField(
                     "\u200b",
                     `\`${i + 1}.\` ${videoName.substring(0, 255)}`,
-                    );
-                    if (i == this.videoQueue.length - 1) {
-                        embed.addField("\u200b", `**${this.videoQueue.length} titres dans la file d'attente**`, "");
-                        textChannel.send(embed)
-                    }
-                })
+                );
+                if (i == this.videoQueue.length - 1) {
+                    embed.addField("\u200b", `**${this.videoQueue.length} titres dans la file d'attente**`, "");
+                    textChannel.send(embed)
+                }
+            })
                 
             } else {
                 textChannel.send(`:x: **La file d'attente est actuellement vide**...`);
