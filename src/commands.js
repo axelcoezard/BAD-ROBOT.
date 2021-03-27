@@ -1,6 +1,7 @@
 import { MessageEmbed } from "discord.js"
 import randomPuppy from "random-puppy"
 import ytdl from "ytdl-core"
+import ytpl from "ytpl"
 
 import Config from "./config";
 
@@ -12,6 +13,7 @@ class Commands {
         this.connection = null;
         this.dispatcher = null;
         this.videoQueue = [];
+        this.playing = false;
     }
 
     /**
@@ -75,21 +77,35 @@ class Commands {
                     this.videoQueue.shift();
                     this.dispatcher.destroy();
                     if (this.videoQueue.length > 0) playQueue(this.videoQueue[0]);
+                    else this.playing = false;
                 });
             }  
             
-            this.videoQueue.push(args[0]);
-            if (this.videoQueue.length <= 1) {
+            // Regarde si c'est une playlist
+            const URL_params = new URLSearchParams(args[0])
+            if (URL_params.has("list")) {
+                const PLAYLIST_id = URL_params.get("list");
+                const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
+                playlist.items.forEach(i => this.videoQueue.push(i.shortUrl))
+            } else {
+                this.videoQueue.push(args[0]);
+            }
+
+            if (!this.playing) {
                 voiceChannel.join().then(connection => {
                     this.connection = connection;
                     // Envoie d'un message de confirmation
                     textChannel.send(`:thumbsup: **Connecté à** \`${voiceChannel.name}\``);
                     // Vidage de la file d 'attente lors de la déconnection
-                    this.connection.on("disconnect", () => this.videoQueue = []);
+                    this.connection.on("disconnect", () => {
+                        this.videoQueue = []
+                        this.playing = false;
+                    });
                     // Défini la fonction de lecture de la queue
                     playQueue(this.videoQueue[0])   
                 });  
-            } else textChannel.send(`:thumbsup: **Ajouté à la file d'attente**`);
+                this.playing = true;
+            } else textChannel.send(`:thumbsup: **Ajouté(s) à la file d'attente**`);
         }        
     }
     
@@ -104,13 +120,14 @@ class Commands {
             .setTitle(`Contenu de la file d'attente`)
             .setDescription("Voici tous les titres qui sont dans la file d'attente:")
             .setTimestamp();
-            
+
             this.videoQueue.forEach(async (videoURL, i) => {
                 const videoInfo = await ytdl.getBasicInfo(videoURL);
                 const videoName = await videoInfo.videoDetails.title;
+                const videoDuration = await videoInfo.videoDetails.length_seconds;
                 embed.addField(
                     "\u200b",
-                    `\`${i + 1}.\` ${videoName.substring(0, 255)}`,
+                    `**○** \`${videoName.substring(0, 250)}...\``,
                 );
                 if (i == this.videoQueue.length - 1) {
                     embed.addField("\u200b", `**${this.videoQueue.length} titres dans la file d'attente**`, "");
@@ -140,6 +157,7 @@ class Commands {
     async leave (message, args) {
         if (this.dispatcher) this.dispatcher.destroy();
         if (this.connection) this.connection.disconnect();
+        this.playing = false;
     }
 }
 
