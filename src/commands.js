@@ -85,7 +85,7 @@ class Commands {
             const URL_params = new URLSearchParams(args[0])
             if (URL_params.has("list")) {
                 const PLAYLIST_id = URL_params.get("list");
-                const playlist = await ytpl('UU_aEa8K-EOJ3D6gOs7HcyNg');
+                const playlist = await ytpl(PLAYLIST_id);
                 playlist.items.forEach(i => this.videoQueue.push(i.shortUrl))
             } else {
                 this.videoQueue.push(args[0]);
