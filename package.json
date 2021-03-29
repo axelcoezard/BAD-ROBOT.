@@ -4,6 +4,7 @@
   "description": "Le bot officiel de mon serveur discord BAD DEVS.",
   "main": "src/index.js",
   "scripts": {
+    "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js"
   },
   "repository": {

@@ -31,4 +31,4 @@ Client.on("message", (message) => {
     }
 })
 
-Client.login(process.env.TOKEN).catch(e => console.log(e));
+// Client.login(process.env.TOKEN).catch(e => console.log(e));

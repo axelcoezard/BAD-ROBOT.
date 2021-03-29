@@ -171,6 +171,13 @@ class Commands {
         if (this.connection) this.connection.disconnect();
         this.playing = false;
     }
+
+    /**
+     * 
+     */
+    async help (message, args) {
+
+    }
 }
 
 export default Commands;
