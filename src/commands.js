@@ -1,5 +1,6 @@
 import { MessageEmbed } from "discord.js"
 import randomPuppy from "random-puppy"
+import {memeAsync} from "memejs"
 import ytdl from "ytdl-core"
 import ytpl from "ytpl"
 
@@ -24,14 +25,25 @@ class Commands {
         const subReddits = Config.subReddits;
         // Séléctionne un subReddit aléatoirement.
         const random = subReddits[Math.floor(Math.random() * subReddits.length)];
+        // Répond avec une image aléatoire
+        this.pls(message, [random]);
+    }
+
+    /**
+     * 
+     */
+    async pls (message, args) { 
+        const subReddit = args[0];
         // Récupère une image aléatoire sur le subReddit.
-        const image = await randomPuppy(random);
-        const embed = new MessageEmbed()
-            .setColor("GREEN")
-            .setImage(image)    
-            .setURL(`https://reddit.com/r/${random}`);
-        // Envoie le meme sur Discord.
-        message.channel.send(embed);
+        try {
+            const image = await memeAsync(subReddit);
+            const embed = new MessageEmbed()
+                .setColor("GREEN")
+                .setImage(await image.url)    
+                .setURL(`https://reddit.com/r/${subReddit}`);
+            // Envoie le meme sur Discord.
+            message.channel.send(embed);
+        } catch (err) {}
     }
 
     /**

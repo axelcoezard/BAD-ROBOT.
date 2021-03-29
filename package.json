@@ -25,6 +25,7 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.2.8",
+    "memejs": "^2.0.1",
     "opusscript": "^0.0.8",
     "random-puppy": "^1.1.0",
     "ytdl-core": "^4.5.0",
