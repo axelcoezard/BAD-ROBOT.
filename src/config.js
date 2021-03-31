@@ -5,9 +5,12 @@ const Config = {
     prefix: "!",
 
     subReddits: [
-        "dankmeme",
-        "meme",
-        "me_irl"
+        "dankmemes",
+        "memes",
+        "me_irl",
+        "terriblefacebookmemes",
+        "teenagers",
+        "AdviceAnimals"
     ]
 
 }
