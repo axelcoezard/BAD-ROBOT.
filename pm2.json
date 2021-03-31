@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "BAD-ROBOT.",
+            "script": "npm",
+            "args" : "start"
+        }
+    ]
+}

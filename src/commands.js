@@ -29,7 +29,7 @@ class Commands {
         // Répond avec une image aléatoire
         this.pls(message, [random]);
     }
-
+    
     /**
      * 
      */
@@ -39,11 +39,12 @@ class Commands {
         try {
             const image = await memeAsync(subReddit);
             const embed = new MessageEmbed()
-                .setColor("GREEN")
-                .setImage(await image.url)    
-                .setURL(`https://reddit.com/r/${subReddit}`);
+            .setColor("GREEN")
+            .setImage(await image.url)    
+            .setURL(`https://reddit.com/r/${subReddit}`);
             // Envoie le meme sur Discord.
             message.channel.send(embed);
+            console.log(`[BOT] Envoie d'une image du subReddit ${subReddit}.`)
         } catch (err) {}
     }
 
@@ -85,6 +86,7 @@ class Commands {
                 textChannel.send(`**A la recherche de** :mag_right: \`${videoURL}\``);
                 const videoInfo = await ytdl.getBasicInfo(videoURL);
                 textChannel.send(`**Joue actuellement** :notes: \`${videoInfo.videoDetails.title}\``);
+                console.log(`[BOT] Joue actuellement: ${videoInfo.videoDetails.title}`)
                 // Supprime le flux après lecture
                 this.dispatcher.on("finish", () => {
                     this.videoQueue.shift();
