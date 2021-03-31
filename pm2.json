@@ -3,7 +3,7 @@
         {
             "name": "BAD-ROBOT.",
             "script": "npm",
-            "args" : "start"
+            "args" : "dev"
         }
     ]
 }
