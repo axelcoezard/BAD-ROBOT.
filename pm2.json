@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "BAD-ROBOT.",
-            "script": "npm",
+            "script": "yarn",
             "args" : "dev"
         }
     ]
