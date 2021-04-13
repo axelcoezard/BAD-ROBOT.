@@ -29,6 +29,13 @@ class Commands {
         // Répond avec une image aléatoire
         this.pls(message, [random]);
     }
+
+    /**
+     * 
+     */
+    async flemmeradio (message, args) {
+        this.play(message, ["https://www.youtube.com/watch?v=NcLxD6tkLxo"]);
+    }
     
     /**
      * 
