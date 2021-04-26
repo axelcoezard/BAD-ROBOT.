@@ -40,6 +40,34 @@ class Commands {
     /**
      * 
      */
+    async dickinsideme (message, args) {
+        this.play(message, ["https://www.youtube.com/watch?v=hnI5_dwa7nw"]);
+    }
+    
+    /**
+     * 
+     */
+    async kudo (message, args) {
+        this.play(message, ["https://www.youtube.com/watch?v=lx4uH_lw2Dg"]);
+    }
+    
+    /**
+     * 
+     */
+    async aw (message, args) {
+        this.play(message, ["https://www.youtube.com/watch?v=fps1UuEoNx0"]);
+    }
+    
+    /**
+     * 
+     */
+    async skeletor (message, args) {
+        this.play(message, ["https://www.youtube.com/watch?v=oL_fLFPaStI"]);
+    }
+    
+    /**
+     * 
+     */
     async pls (message, args) { 
         const subReddit = args[0];
         // Récupère une image aléatoire sur le subReddit.
