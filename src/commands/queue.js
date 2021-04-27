@@ -1,4 +1,4 @@
-const Queue = () => {
+const Queue = async (client, message, args, state) => {
     
 }
 

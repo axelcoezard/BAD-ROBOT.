@@ -18,75 +18,7 @@ class Commands {
         this.playing = false;
         this.videoVolume = 50;
     }
-
-    /**
-     * 
-     */
-    async play (message, args) {
-        // Récupère la channel de l'utilisateur
-        const voiceChannel = message.member.voice.channel;
-        const textChannel = message.channel;
-
-        // Vérifie que l'utilisateur est dans une channel.
-        if (args.length >= 1 && voiceChannel) {
-            // Définition de la fonction de lecture de queue
-            const playQueue = async (videoURL) => {
-                // Définition des options de download.
-                const options = { quality: "highestaudio"};
-                // Récupération du fichier audio.
-                const download = ytdl(videoURL, options);
-                // Lecture et diffusion du fichier audio.
-                this.dispatcher = this.connection.play(download);
-                this.dispatcher.setVolume(this.videoVolume / 100);
-                // Envoie d'un message de confirmation
-                textChannel.send(`**A la recherche de** :mag_right: \`${videoURL}\``);
-                const videoInfo = await ytdl.getBasicInfo(videoURL);
-                textChannel.send(`**Joue actuellement** :notes: \`${videoInfo.videoDetails.title}\``);
-                console.log(`[BOT] Joue actuellement: ${videoInfo.videoDetails.title}`)
-                // Supprime le flux après lecture
-                this.dispatcher.on("finish", () => {
-                    this.videoQueue.shift();
-                    this.dispatcher.destroy();
-                    if (this.videoQueue.length > 0) playQueue(this.videoQueue[0]);
-                    else this.playing = false;
-                });
-            }  
-            
-            if (args.length > 1) {
-                // Passe à la prochaine musique
-                this.videoQueue = args;
-            } else {
-                // Regarde si c'est une playlist
-                const URL_params = new URLSearchParams(args[0])
-                if (URL_params.has("list")) {
-                    const PLAYLIST_id = URL_params.get("list");
-                    const playlist = await ytpl(PLAYLIST_id);
-                    playlist.items.forEach(i => this.videoQueue.push(i.shortUrl))
-                } else {
-                    this.videoQueue.push(args[0]);
-                }
-            }            
-
-            if (!this.playing) {
-                voiceChannel.join().then(connection => {
-                    if (!this.connection) {
-                        this.connection = connection;
-                        // Envoie d'un message de confirmation
-                        textChannel.send(`:thumbsup: **Connecté à** \`${voiceChannel.name}\``);
-                    }
-                    // Vidage de la file d 'attente lors de la déconnection
-                    this.connection.on("disconnect", () => {
-                        this.videoQueue = []
-                        this.playing = false;
-                    });
-                    // Défini la fonction de lecture de la queue
-                    playQueue(this.videoQueue[0])   
-                });  
-                this.playing = true;
-            } else textChannel.send(`:thumbsup: **Ajouté(s) à la file d'attente**`);
-        }        
-    }
-
+    
     /**
      * 
      */
