@@ -160,8 +160,6 @@ class Commands {
                     });
                     // Défini la fonction de lecture de la queue
                     playQueue(this.videoQueue[0])   
-                    // Défini le volume par défault à 50%.
-                    this.volume(message, args, [50]);
                 });  
                 this.playing = true;
             } else textChannel.send(`:thumbsup: **Ajouté(s) à la file d'attente**`);
