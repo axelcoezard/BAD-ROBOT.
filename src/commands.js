@@ -165,6 +165,43 @@ class Commands {
             } else textChannel.send(`:thumbsup: **Ajouté(s) à la file d'attente**`);
         }        
     }
+    /**
+     * 
+     */
+    async mute (message, args) {
+        // Met le volume à 0.
+        this.volume(message, [0]);
+    }
+
+    /**
+     * 
+     */
+    async volume (message, args) {
+        // Récupère la channel de l'utilisateur
+        const voiceChannel = message.member.voice.channel;
+        const textChannel = message.channel;
+        //
+        if (args.length < 1) {
+            message.channel.send(
+                `:warning:  **Veuillez indiquer un volume entre 0 et 100**`
+            );
+            return console.log("[BOT] Aucune volume indiqué")
+        }
+        //
+        if (!this.playing && !this.dispatcher) {
+            message.channel.send(
+                `:warning:  **Aucune lecture en cours**`
+            );
+            return console.log("[BOT] Aucune lecture en cours")
+        }
+        //
+        this.dispatcher.setVolume(args[0] / 100);
+        //
+        message.channel.send(
+            `:level_slider:  **Volume mis à ${args[0] / 100}%**`
+        );
+        console.log(`[BOT] Volume mis à ${args[0] / 100}%`)
+    }
 
     /**
      * 
