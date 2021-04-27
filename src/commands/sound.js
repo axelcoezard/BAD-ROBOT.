@@ -4,7 +4,6 @@ import YAML from "yaml";
 
 import Play from "./play"
 
-
 const __CACHE_FILE = "soundboard.json";
 
 const Soundboard = async (client, message, args, state) => {
