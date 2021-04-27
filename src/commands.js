@@ -174,7 +174,7 @@ class Commands {
         // 
         if (!this.playing && !this.dispatcher) return false;
         //
-        this.dispatcher.stop();
+        this.dispatcher.destroy();
         this.playing = false;
         //
         this.videoQueue.shift();
