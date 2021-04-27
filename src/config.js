@@ -11,7 +11,9 @@ const Config = {
         "terriblefacebookmemes",
         "teenagers",
         "AdviceAnimals"
-    ]
+    ],
+
+    soundboardAliases: ["soundboard", "sbd", "sb"]
 
 }
 

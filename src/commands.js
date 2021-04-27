@@ -186,8 +186,10 @@ class Commands {
         //
         this.videoQueue.shift();
         //
-        if (this.videoQueue.length == 0) 
+        if (this.videoQueue.length == 0) {
+            console.log("[BOT] Aucun son dans la liste de lecture")
             return this.dispatcher.destroy();
+        }
         //
         const tmpQueue = this.videoQueue;
         this.videoQueue = [];

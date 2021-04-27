@@ -3,9 +3,11 @@ import Dotenv from "dotenv"
 
 import Config from "./config"
 import Commands from "./commands"
+import Soundboard from "./soundboard"
 
 const Client = new Discord.Client();
 const CMDRegister = new Commands();
+const CMDSoundboard = new Soundboard();
 
 Dotenv.config();
 
@@ -28,7 +30,7 @@ Client.on("message", (message) => {
         const cmd_args = args;
         // Execute la commande si elle existe
         if (cmd in CMDRegister) 
-            return CMDRegister[cmd](message, cmd_args);        
+            return CMDRegister[cmd](message, cmd_args);     
     }
 })
 
