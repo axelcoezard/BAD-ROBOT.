@@ -172,7 +172,7 @@ class Commands {
         const voiceChannel = message.member.voice.channel;
         const textChannel = message.channel;
         // 
-        if (!playing && !this.dispatcher) return false;
+        if (!this.playing && !this.dispatcher) return false;
         //
         this.dispatcher.stop();
         this.playing = false;
