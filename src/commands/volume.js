@@ -1,5 +1,4 @@
 const Volume = async (client, message, args, state) => {
-    const voiceChannel = message.member.voice.channel;
     const textChannel = message.channel;
 
     if (args.length < 1) {

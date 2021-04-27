@@ -101,37 +101,6 @@ class Commands {
     /**
      * 
      */
-    async volume (message, args) {
-        // Récupère la channel de l'utilisateur
-        const voiceChannel = message.member.voice.channel;
-        const textChannel = message.channel;
-        //
-        if (args.length < 1) {
-            message.channel.send(
-                `:warning:  **Veuillez indiquer un volume entre 0 et 100**`
-            );
-            return console.log("[BOT] Aucune volume indiqué")
-        }
-        //
-        if (!this.playing && !this.dispatcher) {
-            message.channel.send(
-                `:warning:  **Aucune lecture en cours**`
-            );
-            return console.log("[BOT] Aucune lecture en cours")
-        }
-        //
-        this.dispatcher.setVolume(args[0] / 100);
-        this.videoVolume = args[0];
-        //
-        message.channel.send(
-            `:level_slider:  **Volume mis à ${args[0]}%**`
-        );
-        console.log(`[BOT] Volume mit à ${args[0]}%`)
-    }
-
-    /**
-     * 
-     */
     async skip (message, args) {
         // Récupère la channel de l'utilisateur
         const voiceChannel = message.member.voice.channel;
