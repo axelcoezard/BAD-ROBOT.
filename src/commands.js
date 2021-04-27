@@ -148,9 +148,11 @@ class Commands {
 
             if (!this.playing) {
                 voiceChannel.join().then(connection => {
-                    this.connection = connection;
-                    // Envoie d'un message de confirmation
-                    textChannel.send(`:thumbsup: **Connecté à** \`${voiceChannel.name}\``);
+                    if (!this.connection) {
+                        this.connection = connection;
+                        // Envoie d'un message de confirmation
+                        textChannel.send(`:thumbsup: **Connecté à** \`${voiceChannel.name}\``);
+                    }
                     // Vidage de la file d 'attente lors de la déconnection
                     this.connection.on("disconnect", () => {
                         this.videoQueue = []
@@ -172,14 +174,28 @@ class Commands {
         const voiceChannel = message.member.voice.channel;
         const textChannel = message.channel;
         // 
-        if (!this.playing && !this.dispatcher) return false;
+        if (!this.playing && !this.dispatcher) {
+            message.channel.send(
+                `:warning:  **Aucune lecture en cours**`
+            );
+            return console.log("[BOT] Aucune lecture en cours")
+        }
         //
         this.dispatcher.destroy();
         this.playing = false;
         //
         this.videoQueue.shift();
+        //
+        if (this.videoQueue.length == 0) 
+            return this.dispatcher.destroy();
+        //
         const tmpQueue = this.videoQueue;
         this.videoQueue = [];
+        //
+        message.channel.send(
+            `:fast_forward: **Lecture du son suivant...**`
+        );
+        console.log("[BOT] Lecture du son suivant...")
         //
         this.play(message, tmpQueue)        
     }
