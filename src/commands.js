@@ -158,6 +158,8 @@ class Commands {
                         this.videoQueue = []
                         this.playing = false;
                     });
+                    // Défini le volume par défault à 50%.
+                    this.volume(message, args, [50]);
                     // Défini la fonction de lecture de la queue
                     playQueue(this.videoQueue[0])   
                 });  
@@ -200,7 +202,7 @@ class Commands {
         message.channel.send(
             `:level_slider:  **Volume mis à ${args[0] / 100}%**`
         );
-        console.log(`[BOT] Volume mis à ${args[0] / 100}%`)
+        console.log(`[BOT] Volume mit à ${args[0] / 100}%`)
     }
 
     /**
