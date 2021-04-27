@@ -14,6 +14,13 @@ const Help = async (client, message, args, state) => {
     .addField("`!resume`", "relance la lecture de la file d'attente.")
     .addField("`!volume <pourcentage>`", "met le volume du bot à <pourcentage>%.")
     .addField("`!mute`", "met le volume du bot à 0%.")
+
+    .addField("`!sound add <nom> <lien>`", "ajoute à la soundboard le son <nom> et sa source ytb <lien>.")
+    .addField("`!sound remove <nom>`", "supprime de la soundboard le son <nom>.")
+    .addField("`!sound list`", "affiche la liste des sons.")
+    .addField("`!sound random`", "lance la lecture d'un son aléatoire.")
+    .addField("`!sound <nom>`", "lance la lecture du son <nom>.")
+
     .addField("`!meme`", "renvoie un meme choisi aléatoirement depuis des subreddits prédéfinis.")
     .addField( "**[NFSW]** `!pls` <nom_de_subbreddit>", "renvoie une image choisi aléatoirement depuis le subreddit indiqué.")
     .setTimestamp();

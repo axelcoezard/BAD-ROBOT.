@@ -28,6 +28,7 @@
     "ffmpeg-static": "^4.2.8",
     "memejs": "^2.0.1",
     "opusscript": "^0.0.8",
+    "yaml": "^1.10.2",
     "ytdl-core": "^4.5.0",
     "ytpl": "^2.0.5"
   }

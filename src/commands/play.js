@@ -33,7 +33,7 @@ const Play = async (client, message, args, state) => {
                 state.audio.isPlaying = false;
             });
 
-            playQueue(message, state) ;  
+            __playQueue(message, state) ;  
         });  
         state.audio.isPlaying = true;
     } else {
@@ -41,7 +41,7 @@ const Play = async (client, message, args, state) => {
     }
 }
 
-const playQueue = async (message, state) => {
+const __playQueue = async (message, state) => {
     const textChannel = message.channel;
     const options = { quality: "highestaudio"};
     const videoURL = state.audio.queue[0];
@@ -61,7 +61,7 @@ const playQueue = async (message, state) => {
         state.audio.dispatcher.destroy();
 
         if (state.audio.queue.length > 0) 
-            playQueue(message, state);
+            __playQueue(message, state);
         else state.audio.isPlaying = false;
     });
 }  
