@@ -16,7 +16,7 @@ class Commands {
         this.dispatcher = null;
         this.videoQueue = [];
         this.playing = false;
-        this.volume = 50;
+        this.videoVolume = 50;
     }
 
     /**
@@ -118,7 +118,7 @@ class Commands {
                 const download = ytdl(videoURL, options);
                 // Lecture et diffusion du fichier audio.
                 this.dispatcher = this.connection.play(download);
-                this.dispatcher.setVolume(this.volume / 100);
+                this.dispatcher.setVolume(this.videoVolume / 100);
                 // Envoie d'un message de confirmation
                 textChannel.send(`**A la recherche de** :mag_right: \`${videoURL}\``);
                 const videoInfo = await ytdl.getBasicInfo(videoURL);
@@ -198,7 +198,7 @@ class Commands {
         }
         //
         this.dispatcher.setVolume(args[0] / 100);
-        this.volume = args[0];
+        this.videoVolume = args[0];
         //
         message.channel.send(
             `:level_slider:  **Volume mis à ${args[0]}%**`
