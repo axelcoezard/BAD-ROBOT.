@@ -5,7 +5,7 @@ const Play = async (client, message, args, state) => {
     const voiceChannel = message.member.voice.channel;
     const textChannel = message.channel;
 
-    if (args.length != 1) return;
+    if (args.length == 0) return;
     if (!voiceChannel) return;
 
     const URL_params = new URLSearchParams(args[0])
@@ -17,6 +17,9 @@ const Play = async (client, message, args, state) => {
             state.audio.queue.push(i.shortUrl)
         })
     } else state.audio.queue.push(args[0]);
+
+    if (args.length > 1)
+        state.audio.queue = args;
 
     if (!state.audio.isPlaying) {
         voiceChannel.join().then(conn => {
