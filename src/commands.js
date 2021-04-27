@@ -26,11 +26,7 @@ class Commands {
         // Récupère la channel de l'utilisateur
         const voiceChannel = message.member.voice.channel;
         const textChannel = message.channel;
-        // Reprend la lecture si elle est en pause.
-        if (args.length == 0 && this.dispatcher) {
-            this.dispatcher.resume();
-            textChannel.send(`:arrow_forward:  **Lecture en cours dans** \`${voiceChannel.name}\``);   
-        }
+
         // Vérifie que l'utilisateur est dans une channel.
         if (args.length >= 1 && voiceChannel) {
             // Définition de la fonction de lecture de queue

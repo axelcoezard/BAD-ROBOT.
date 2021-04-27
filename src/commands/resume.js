@@ -1,4 +1,5 @@
 const Resume = async (client, message, args, state) => {
+    const voiceChannel = message.member.voice.channel;
     const textChannel = message.channel;
     const {dispatcher} = state.audio;
     
