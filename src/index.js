@@ -27,7 +27,8 @@ Client.on("message", (message) => {
         // Récupère le contenu de la commande.
         const cmd_args = args;
         // Execute la commande si elle existe
-        if (cmd in CMDRegister) CMDRegister[cmd](message, cmd_args);
+        if (cmd in CMDRegister) 
+            return CMDRegister[cmd](message, cmd_args);        
     }
 })
 

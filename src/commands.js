@@ -108,7 +108,7 @@ class Commands {
             textChannel.send(`:arrow_forward:  **Lecture en cours dans** \`${voiceChannel.name}\``);   
         }
         // Vérifie que l'utilisateur est dans une channel.
-        if (args.length == 1 && voiceChannel) {
+        if (args.length >= 1 && voiceChannel) {
             // Définition de la fonction de lecture de queue
             const playQueue = async (videoURL) => {
                 // Définition des options de download.
@@ -131,15 +131,20 @@ class Commands {
                 });
             }  
             
-            // Regarde si c'est une playlist
-            const URL_params = new URLSearchParams(args[0])
-            if (URL_params.has("list")) {
-                const PLAYLIST_id = URL_params.get("list");
-                const playlist = await ytpl(PLAYLIST_id);
-                playlist.items.forEach(i => this.videoQueue.push(i.shortUrl))
+            if (args.length > 1) {
+                // Passe à la prochaine musique
+                this.videoQueue = args;
             } else {
-                this.videoQueue.push(args[0]);
-            }
+                // Regarde si c'est une playlist
+                const URL_params = new URLSearchParams(args[0])
+                if (URL_params.has("list")) {
+                    const PLAYLIST_id = URL_params.get("list");
+                    const playlist = await ytpl(PLAYLIST_id);
+                    playlist.items.forEach(i => this.videoQueue.push(i.shortUrl))
+                } else {
+                    this.videoQueue.push(args[0]);
+                }
+            }            
 
             if (!this.playing) {
                 voiceChannel.join().then(connection => {
@@ -157,6 +162,26 @@ class Commands {
                 this.playing = true;
             } else textChannel.send(`:thumbsup: **Ajouté(s) à la file d'attente**`);
         }        
+    }
+
+    /**
+     * 
+     */
+    async skip (message, args) {
+        // Récupère la channel de l'utilisateur
+        const voiceChannel = message.member.voice.channel;
+        const textChannel = message.channel;
+        // 
+        if (!playing && !this.dispatcher) return false;
+        //
+        this.dispatcher.stop();
+        this.playing = false;
+        //
+        this.videoQueue.shift();
+        const tmpQueue = this.videoQueue;
+        this.videoQueue = [];
+        //
+        this.play(message, tmpQueue)        
     }
     
     /**
