@@ -6,7 +6,7 @@ const Volume = async (client, message, args, state) => {
         return console.log("[BOT] Aucune volume indiqué")
     }
 
-    let {isPlaying, dispatcher, volume} = state.audio;
+    let {isPlaying, dispatcher} = state.audio;
 
     if (!isPlaying && !dispatcher) {
         textChannel.send(`:warning:  **Aucune lecture en cours**`);
@@ -14,7 +14,7 @@ const Volume = async (client, message, args, state) => {
     }
 
     dispatcher.setVolume(args[0] / 100);
-    volume = args[0];
+    state.audio.volume = args[0];
 
     textChannel.send(`:level_slider:  **Volume mis à ${args[0]}%**`);
     console.log(`[BOT] Volume mit à ${args[0]}%`)

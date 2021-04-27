@@ -10,7 +10,7 @@ const State = {
         connection: null,
         dispatcher: null,
         isPlaying: false,
-        volume: 50,
+        volume: 5,
         queue: []
     }
 };
