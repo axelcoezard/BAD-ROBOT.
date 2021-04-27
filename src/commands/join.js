@@ -4,7 +4,7 @@ const Join = async (client, message, args, state) => {
     if (!channel) return;
 
     channel.join().then(connection => {
-        state.audioConnection = connection;
+        state.audio.connection = connection;
     });
 }
 

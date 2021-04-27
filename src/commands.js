@@ -22,18 +22,6 @@ class Commands {
     /**
      * 
      */
-    async join (message, args) {
-        // Récupère la channel de l'utilisateur
-        const {channel} = message.member.voice;
-        // Vérifie que l'utilisateur est dans une channel.
-        if (channel) {
-            channel.join().then(con => this.connection = con);
-        }
-    }
-
-    /**
-     * 
-     */
     async play (message, args) {
         // Récupère la channel de l'utilisateur
         const voiceChannel = message.member.voice.channel;
@@ -217,15 +205,6 @@ class Commands {
                 `:pause_button: **Lecture mise en pause dans** \`${message.member.voice.channel.name}\``
             );        
         }
-    }
-
-    /**
-     * 
-     */
-    async leave (message, args) {
-        if (this.dispatcher) this.dispatcher.destroy();
-        if (this.connection) this.connection.disconnect();
-        this.playing = false;
     }
 
     /**

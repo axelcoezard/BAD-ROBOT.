@@ -6,11 +6,13 @@ import Config from "./config"
 const Client = new Discord.Client();
 
 const State = {
-    audioConnection: null,
-    audioDispatcher: null,
-    audioPlaying: false,
-    audioVolume: 50,
-    audioQueue: []
+    audio: {
+        connection: null,
+        dispatcher: null,
+        isPlaying: false,
+        volume: 50,
+        queue: []
+    }
 };
 
 Dotenv.config();
