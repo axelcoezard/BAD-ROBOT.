@@ -90,13 +90,6 @@ class Commands {
             } else textChannel.send(`:thumbsup: **Ajouté(s) à la file d'attente**`);
         }        
     }
-    /**
-     * 
-     */
-    async mute (message, args) {
-        // Met le volume à 0.
-        this.volume(message, [0]);
-    }
 
     /**
      * 
