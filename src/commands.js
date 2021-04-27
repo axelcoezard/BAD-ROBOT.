@@ -194,18 +194,6 @@ class Commands {
             textChannel.send(`:x: **La file d'attente est actuellement vide**...`);
         }
     }
-        
-    /**
-     * 
-     */
-    async pause (message, args) {
-        if (this.dispatcher) {
-            this.dispatcher.pause();
-            message.channel.send(
-                `:pause_button: **Lecture mise en pause dans** \`${message.member.voice.channel.name}\``
-            );        
-        }
-    }
 
     /**
      * 
@@ -228,13 +216,6 @@ class Commands {
 
         message.channel.send(embed)
         console.log("[BOT] Envoie de la liste des commandes")
-    }
-
-    /**
-     * 
-     */
-    async help (message, args) {
-
     }
 }
 
