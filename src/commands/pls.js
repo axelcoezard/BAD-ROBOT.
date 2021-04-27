@@ -1,7 +1,7 @@
 import { MessageEmbed } from "discord.js"
-import {memeAsync} from "memejs"
+import { memeAsync } from "memejs"
 
-const pls = (client, message, args, state) => {
+const Please = (client, message, args, state) => {
     const subReddit = args[0];
     // Récupère une image aléatoire sur le subReddit.
     try {
@@ -18,4 +18,4 @@ const pls = (client, message, args, state) => {
     }
 }
 
-export default pls;
+export default Please;
