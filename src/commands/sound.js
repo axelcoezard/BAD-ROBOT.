@@ -1,3 +1,4 @@
+import { MessageEmbed } from "discord.js"
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
@@ -42,6 +43,8 @@ const __add = async (client, message, args, state) => {
     data[args[0]] = args[1];
 
     __save(data);
+
+    console.log(`[BOT][Soundboard] Ajoute le son ${args[0]}.`)
 }
 
 const __remove = async (client, message, args, state) => {
@@ -51,10 +54,25 @@ const __remove = async (client, message, args, state) => {
     delete data[args[0]]
 
     __save(data);
+
+    console.log(`[BOT][Soundboard] Supprime le son ${args[0]}.`)
 }
 
 const __list = async (client, message, args, state) => {
     const data = await __load()
+
+    const embed = new MessageEmbed()
+    .setColor("GREEN") 
+    .setTitle("Liste des sons")
+    .setDescription("Voici tous les sons de la soundboard:")
+    .setTimestamp();
+
+    Object.entries(data).forEach(([key, value], i) => {
+        embed.addField(`**${i + 1}.** \`${key}\` :`, `${value}`)
+    })
+
+    message.channel.send(embed)
+    console.log("[BOT][Soundboard] Envoie de la liste des sons.")
 }
 
 const __random = async (client, message, state) => {
@@ -65,6 +83,7 @@ const __random = async (client, message, state) => {
     const URL = data[data_keys[random_id]]
 
     try {
+        console.log("[BOT][Soundboard] Lit un son aléatoire.")
         Play(client, message, [URL], state);
     } catch (e) {
         console.log(e.stack)
@@ -78,8 +97,10 @@ const __play = async (client, message, audio_name, state) => {
     
     try {
         const URL = data[audio_name];
-        if (URL)
+        if (URL) {
+            console.log("[BOT][Soundboard] Lit le son " + audio_name + ".")
             Play(client, message, [URL], state);
+        }
     } catch (e) {
         console.log(e.stack)
     }
