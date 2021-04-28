@@ -32,7 +32,7 @@ const __load = async () => {
 const __save = async (data) => {
     fs.writeFileSync(
         path.join(__dirname, "../cache/" + __CACHE_FILE),
-        JSON.stringify(data)
+        JSON.stringify(data, null, "\t")
     )
 }
 
