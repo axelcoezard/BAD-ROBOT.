@@ -3,7 +3,7 @@
         {
             "name": "BAD-ROBOT.",
             "script": "yarn",
-            "args" : "dev"
+            "args" : "start"
         }
     ]
 }
