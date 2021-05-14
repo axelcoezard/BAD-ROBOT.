@@ -12,7 +12,11 @@ const State = {
         isPlaying: false,
         volume: 5,
         queue: []
-    }
+    },
+	crypto: {
+		currency: "EUR",
+		tracking: {}
+	}
 };
 
 Dotenv.config();
